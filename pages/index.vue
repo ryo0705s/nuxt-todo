@@ -26,17 +26,40 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <!-- pages/index.vue -->
+        <tr v-for="(item, index) in todos" :key="index">
+          <td>{{ item.content }}</td>
+          <td>{{ item.created }}</td>
+          <td>
+            <button class="button">{{ item.state }}</button>
+          </td>
+          <td><button class="button button--delete">削除</button></td>
+        </tr>
+        <!-- <tr>
           <td>テスト</td>
           <td>2020-04-30 17:00</td>
           <td><button class="button button--yet">作業前</button></td>
           <td><button class="button button--delete">削除</button></td>
-        </tr>
+        </tr> -->
       </tbody>
     </table>
   </section>
 </template>
-<script></script>
+<script>
+// pages/index.vue
+import { mapState } from 'vuex'
+
+export default {
+  data: function () {
+    return {
+      content: '',
+    }
+  },
+  computed: {
+    ...mapState(['todos']),
+  },
+}
+</script>
 <style>
 /* 省略 */
 </style>
